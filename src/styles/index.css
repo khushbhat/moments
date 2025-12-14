@@ -1,0 +1,44 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Custom utility classes */
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--tw-gradient-stops));
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for light mode */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(139, 115, 85, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 115, 85, 0.3);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 115, 85, 0.5);
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: rgba(201, 169, 97, 0.05);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(201, 169, 97, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 169, 97, 0.4);
+}
