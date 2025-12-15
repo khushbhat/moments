@@ -2,7 +2,7 @@
  * Custom hooks for Calendar API
  */
 import { useState, useEffect } from 'react';
-import { calendarApi, CalendarEvent, CreateCalendarEventRequest, UpdateCalendarEventRequest } from '@/api';
+import { calendarApi, CalendarEvent, CreateEventRequest, UpdateEventRequest } from '@/api';
 
 export const useCalendarEvents = (params?: {
   start_date?: string;
@@ -38,7 +38,7 @@ export const useCalendarEvents = (params?: {
     fetchEvents();
   }, [params?.start_date, params?.end_date, params?.page, params?.limit]);
 
-  const createEvent = async (data: CreateCalendarEventRequest) => {
+  const createEvent = async (data: CreateEventRequest) => {
     try {
       const newEvent = await calendarApi.createEvent(data);
       setData((prev) => [newEvent, ...prev]);
@@ -48,7 +48,7 @@ export const useCalendarEvents = (params?: {
     }
   };
 
-  const updateEvent = async (id: string, data: UpdateCalendarEventRequest) => {
+  const updateEvent = async (id: string, data: UpdateEventRequest) => {
     try {
       const updatedEvent = await calendarApi.updateEvent(id, data);
       setData((prev) => prev.map((event) => (event.id === id ? updatedEvent : event)));

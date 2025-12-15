@@ -5,7 +5,6 @@ Stub implementation for JWT verification with Supabase
 from typing import Optional
 from fastapi import Depends, Header
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from jose import jwt, JWTError
 from datetime import datetime, timedelta
 from uuid import UUID, uuid4
 
@@ -27,29 +26,25 @@ class CurrentUser:
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """
     Create JWT access token
+    STUB: Returns a mock token for development
     TODO: Integrate with Supabase Auth
     """
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.utcnow() + expires_delta
-    else:
-        expire = datetime.utcnow() + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
-    return encoded_jwt
+    # STUB: Return mock token
+    return "mock-dev-token-" + str(uuid4())
 
 
 def verify_token(token: str) -> dict:
     """
     Verify JWT token
+    STUB: Returns mock payload for development
     TODO: Integrate with Supabase JWT verification
     """
-    try:
-        payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])
-        return payload
-    except JWTError:
-        raise UnauthorizedException(detail="Invalid or expired token")
+    # STUB: Return mock payload for any token
+    return {
+        "sub": "123e4567-e89b-12d3-a456-426614174000",
+        "email": "user@example.com",
+        "name": "Mock User"
+    }
 
 
 async def get_current_user(
